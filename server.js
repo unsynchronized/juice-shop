@@ -242,6 +242,9 @@ app.use('/support/logs/:file', logFileServer())
 
 /* Swagger documentation for B2B v2 endpoints */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/swagger.yml', function( {params, query}, res, next) {
+    res.sendFile(path.resolve(__dirname, './swagger.yml'));
+});
 
 app.use(express.static(path.join(__dirname, '/frontend/dist/frontend')))
 app.use(cookieParser('kekse'))
